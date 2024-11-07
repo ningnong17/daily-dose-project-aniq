@@ -1,8 +1,8 @@
 class Notes {
-    constructor(title, description, userId) {
+    constructor(title, description, priority, userId) {
         this.title = title;
         this.description = description;
-        this.priority = ["Extreme Priority", "High Priority", "Medium Priority", "Low Priority"];
+        this.priority = priority;
         const timestamp = new Date().getTime();
         const random = Math.floor(Math.random() * 1000);
         this.id = timestamp + "" + random.toString().padStart(3, '0');
