@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require("body-parser");
  //const { Account, createAccount, signIn } = require('./models/account');
-const { addNotes } = require('./utils/NotesUtils.js')
+const { addNotes,viewNotes } = require('./utils/NotesUtils.js')
 var app = express();
 const PORT = process.env.PORT || 5050
 var startPage = "index.html";
@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + "/public/" + startPage);
 })
 app.post('/add-notes', addNotes);
+app.get('/view-notes', viewNotes);
+
+
+
 // app.post('/create-account', (req, res) => {
 //     const { username, email, password } = req.body;
     
