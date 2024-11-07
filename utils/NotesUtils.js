@@ -1,29 +1,50 @@
-const { createAccount, signIn, sessions } = require('./accounts.js');
-const { Notes } = require('./notes.js');
-
-// Create a new account
-try {
-    const user1 = createAccount("john_doe", "john@example.com", "password123");
-    console.log("Account created:", user1);
-} catch (error) {
-    console.log(error.message);
+ const { Account } = require('../models/account.js');
+const { Notes } = require('../models/notes.js');
+const fs = require('fs').promises;
+async function readJSON(filename) {
+    try {
+        const data = await fs.readFile(filename, 'utf8');
+        return JSON.parse(data);
+    } catch (err) { console.error(err); throw err; }
 }
 
-// Sign in to the account
-let sessionId;
-try {
-    const signInResult = signIn("john@example.com", "password123");
-    sessionId = signInResult.sessionId;
-    console.log("User signed in:", signInResult.user);
-} catch (error) {
-    console.log(error.message);
+async function writeJSON(object, filename) {
+    try {
+        const allObjects = await readJSON(filename);
+        allObjects.push(object);
+        await fs.writeFile(filename, JSON.stringify(allObjects), 'utf8');
+        return allObjects;
+    } catch (err) { console.error(err); throw err; }
 }
 
-// If the user is signed in, create a note linked to them
-if (sessionId && sessions[sessionId]) {
-    const userId = sessions[sessionId]; // Get user ID from session
-    const newNote = new Notes("Daily Goals", "Complete the daily project.", userId);
-    console.log("New note created for user:", newNote);
-} else {
-    console.log("User is not signed in.");
+
+async function addNotes (req, res){
+    try{
+        const title = req.body.title;
+        const description = req.body.description;
+        const priority = req.body.priority;
+        if (description.length < 1){
+            return res.status(500).json({message: 'Please enter more than 50 characters'});
+        
+        } else if (title.length < 1){
+            return res.status(500).json({message: 'Please enter a title'});
+        } else if (priority < 1 || priority == null){
+            return res.status(500).json({message: 'Please select a priority status'});
+        } else {
+            const newNotes = new Notes(title, description, priority);
+            const updatedNotes = await writeJSON(newNotes, 'utils/notes.json');
+            return res.status(201).json(updatedNotes);
+        }
+    }catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+async function createAccount (req, res){
+    try{
+        
+    }
+}
+module.exports = {
+    readJSON, writeJSON, addNotes
 }
