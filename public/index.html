@@ -14,7 +14,7 @@
     <script src="js/notes.js"></script>
 </head>
 
-<body>
+<body onload="viewNotes()">
     <!-- Navbar with Logo -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container d-flex justify-content-center">
@@ -27,30 +27,19 @@
 
     <!-- Main Container with Button -->
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10 text-left">
-                <button type="button" class="btn btn-secondary big-button mt-4" data-toggle="modal" data-target="#notesModal">
-                    <span class="material-symbols-outlined big-icon">add</span>
-                </button>
-            </div>
-            <!-- <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <table class="table table-striped table-striped-custom">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Priority</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableContent">
-                        </tbody>
-                    </table>
-                </div>
-            </div> -->
+        <!-- Add Button -->
+        <div class="col-md-4">
+            <button type="button" class="btn btn-secondary big-button mt-4" data-toggle="modal" data-target="#notesModal">
+                <span class="material-symbols-outlined big-icon">add</span>
+            </button>
+        </div>
+        <div class="row justify-content-start" id="tableContent">
+
+            <!-- Note Cards will be inserted here by JavaScript -->
         </div>
     </div>
+
+
     <!-- Modal -->
     <div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="notesModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -91,14 +80,6 @@
         </div>
     </div>
     <!-- PLACE EDIT MODAL HERE -->
-
-
-
-
-
-
-
-
 
 </body>
 </html>
