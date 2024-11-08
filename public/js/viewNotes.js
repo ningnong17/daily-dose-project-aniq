@@ -8,18 +8,18 @@ function viewNotes() {
 
         for (var i = 0; i < response.length; i++) {
             html += `
-                    <div class="col-md-4 mt-4">
+    
                     <div class="note-card">
-
-                      <button type="button" class="btn btn-warning" onclick="editNote('${encodeURIComponent(JSON.stringify(response[i]))}')">Edit</button>
                         <h3 class="note-title">${response[i].title}</h3>
-                        <p class="note-description">${response[i].description}</p>
+                        <span class="note-description">${response[i].description}</span>
                         <span class="note-priority ${response[i].priority}">
                             ${response[i].priority.replace("-", " ").toUpperCase()}
                         </span>
-                        <button class="btn btn-sm btn-danger mt-3" onclick="deleteNotes(${response[i].id})">Delete</button>
+                        <div class="note-buttons">
+                         <button type="button" class="btn btn-sm btn-warning" onclick="editNote('${encodeURIComponent(JSON.stringify(response[i]))}')">Edit</button>
+                         <button class="btn btn-sm btn-danger" onclick="deleteNotes(${response[i].id})">Delete</button>
+                         </div>
                     </div>
-                </div>
             `;
         }
 

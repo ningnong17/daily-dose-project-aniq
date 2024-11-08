@@ -1,7 +1,7 @@
 /* Main Button Style */
 .big-button {
-    width: 170px;
-    height: 250px;
+    width: 200px;
+    height: 350px;
     font-size: 2rem;
 }
 .big-icon {
@@ -21,27 +21,35 @@ body {
     background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
+    margin-top: 24px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-left: 5px solid;
-    width: 170px;
-    height: 250px;
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 200px;
+    height: 350px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Ensures content is spaced out */
 }
 
 /* Title and Text Styles */
 .note-title {
     font-size: 1.25rem;
+    text-align: left;
     font-weight: 600;
     color: #333;
 }
 .note-description {
     font-size: 1rem;
     color: #666;
+    text-align: left;
     margin-bottom: 10px;
+    overflow: hidden;          /* Ensures content doesn't overflow */
+    text-overflow: ellipsis;   /* Adds "..." if the text is truncated */
+    display: -webkit-box;      /* Necessary for multi-line truncation */
+    -webkit-line-clamp: 6;     /* Limits the text to 3 lines */
+    -webkit-box-orient: vertical; /* Defines box orientation */
+    white-space: normal;       /* Allows the text to wrap */
 }
 
 /* Styling for the priority indicator */
@@ -52,6 +60,13 @@ body {
     border-radius: 5px;
     color: #fff;
     margin-top: 10px; /* Space between description and priority */
+}
+.note-buttons {
+    display: flex;          /* Makes the buttons display in a row */
+    flex-direction: row;    /* Ensures buttons are placed horizontally */
+    gap: 10px;              /* Adds space between the buttons */
+    margin-top: auto;       /* Pushes buttons to the bottom of the card */
+    justify-content: flex-end; /* Aligns buttons to the right */
 }
 
 /* Priority Color Styles */

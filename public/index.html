@@ -32,15 +32,20 @@
 
     <!-- Main Container with Button -->
     <div class="container mt-5">
-        <!-- Add Button -->
-        <div class="col-md-4">
-            <button type="button" class="btn btn-secondary big-button mt-4" data-toggle="modal" data-target="#notesModal">
-                <span class="material-symbols-outlined big-icon">add</span>
-            </button>
-        </div>
-        <div class="row justify-content-start" id="tableContent">
-
-            <!-- Note Cards will be inserted here by JavaScript -->
+        <div class="row">
+            <!-- Button Column -->
+            <div class="col-md-2 d-flex align-items-start">
+                <button type="button" class="btn btn-secondary big-button mt-4" data-toggle="modal" data-target="#notesModal">
+                    <span class="material-symbols-outlined big-icon">add</span>
+                </button>
+            </div>
+            
+            <!-- Table Content Column -->
+            <div class="col-md-10">
+                <span class="row justify-content-start"  id="tableContent">
+                    <!-- Note Cards will be inserted here by JavaScript -->
+                </span>
+            </div>
         </div>
     </div>
 
@@ -102,7 +107,7 @@
                     </div>
                     <div class="form-group">
                         <label for="editDescription">Description</label>
-                        <input type="text" class="form-control" id="editDescription" placeholder="Enter description">
+                        <textarea type="text" class="form-control" id="editDescription" placeholder="Edit description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="editPriority">Edit Priority</label>
