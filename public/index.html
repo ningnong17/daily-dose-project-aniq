@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/addNotes.js"></script>
     <script src="js/deleteNotes.js"></script>
+    <script src="js/editNotes.js"></script>
     <script src="js/viewNotes.js"></script>
     <!-- <script src="js/replace"></script> -->
     <!-- <script src="js/replace"></script> -->
@@ -83,7 +84,46 @@
             </div>
         </div>
     </div>
-    <!-- PLACE EDIT MODAL HERE -->
+   <!-- Edit Modal -->
+   <div class="modal fade" id="editResourceModal" tabindex="-1" role="dialog" aria-labelledby="editResourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editResourceModalLabel">Edit Note</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="editTitle">Title</label>
+                        <input type="text" class="form-control" id="editTitle" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <input type="text" class="form-control" id="editDescription" placeholder="Enter description">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPriority">Edit Priority</label>
+                        <select class="form-control" id= "editPriority" name ="editPriority">
+                            <option value="extreme-priority">Extreme Priority</option>
+                            <option value="high-priority">High Priority</option>
+                            <option value="medium-priority">Medium Priority</option>
+                            <option value="low-priority">Low Priority</option>
+                          </select>
+                    </div>
+                    <p align="right" id="editMessage" class=""></p>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="updateButton">Update Note</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
 
 </body>
 </html>

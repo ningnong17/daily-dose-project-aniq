@@ -10,6 +10,8 @@ function viewNotes() {
             html += `
                     <div class="col-md-4 mt-4">
                     <div class="note-card">
+
+                      <button type="button" class="btn btn-warning" onclick="editNote('${encodeURIComponent(JSON.stringify(response[i]))}')">Edit</button>
                         <h3 class="note-title">${response[i].title}</h3>
                         <p class="note-description">${response[i].description}</p>
                         <span class="note-priority ${response[i].priority}">
