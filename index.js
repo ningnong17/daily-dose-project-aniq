@@ -1,7 +1,9 @@
 var express = require('express');
 var bodyParser = require("body-parser");
- //const { Account, createAccount, signIn } = require('./models/account');
-const { addNotes,viewNotes, editNotes, deleteNotes } = require('./utils/NotesUtils.js')
+const { addNotes } = require('./utils/addNotes.js')
+const { viewNotes } = require('./utils/viewNotes.js')
+const { editNotes } = require('./utils/editNotes.js')
+const { deleteNotes } = require('./utils/deleteNotes.js')
 var app = express();
 const PORT = process.env.PORT || 5050
 var startPage = "index.html";
@@ -17,30 +19,6 @@ app.post('/add-notes', addNotes);
 app.get('/view-notes', viewNotes);
 app.put('/edit-notes/:id',editNotes);
 app.delete('/delete-notes/:id',deleteNotes);
-
-
-// app.post('/create-account', (req, res) => {
-//     const { username, email, password } = req.body;
-    
-//     try {
-//         const newAccount = createAccount(username, email, password);
-//         res.status(201).json({ message: "Account created successfully", account: newAccount });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// });
-
-// // Endpoint for user sign-in
-// app.post('/sign-in', (req, res) => {
-//     const { email, password } = req.body;
-    
-//     try {
-//         const { sessionId, user } = signIn(email, password);
-//         res.status(200).json({ message: "Sign-in successful", sessionId, user });
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// });
 
 server = app.listen(PORT, function () {
     const address = server.address();
