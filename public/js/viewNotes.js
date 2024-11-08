@@ -16,8 +16,8 @@ function viewNotes() {
                             ${response[i].priority.replace("-", " ").toUpperCase()}
                         </span>
                         <div class="note-buttons">
-                         <button type="button" class="btn btn-sm btn-warning" onclick="editNote('${encodeURIComponent(JSON.stringify(response[i]))}')">Edit</button>
-                         <button class="btn btn-sm btn-danger" onclick="deleteNotes(${response[i].id})">Delete</button>
+                         <button type="button" class="btn btn-sm btn-warning" onclick="editNote('${encodeURIComponent(JSON.stringify(response[i]))}')"><span class="material-icons">edit</span></button>
+                         <button class="btn btn-sm btn-danger" onclick="deleteNotes(${response[i].id})"><span class="material-icons">delete</span></button>
                          </div>
                     </div>
             `;
