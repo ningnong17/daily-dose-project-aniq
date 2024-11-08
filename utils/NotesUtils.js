@@ -77,7 +77,7 @@ async function editNotes(req, res) {
         }
         if (modified) {
             await fs.writeFile('utils/notes.json', JSON.stringify(allNotes), 'utf8');
-            return res.status(201).json({ message: 'Resource modified successfully!' });
+            return res.status(201).json({ message: 'Note Updated successfully!' });
         } else {
             return res.status(500).json({ message: 'Error occurred, unable to modify!' });
 
