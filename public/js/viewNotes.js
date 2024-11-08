@@ -15,7 +15,7 @@ function viewNotes() {
                         <span class="note-priority ${response[i].priority}">
                             ${response[i].priority.replace("-", " ").toUpperCase()}
                         </span>
-                        <button class="btn btn-sm btn-danger mt-3" onclick="deleteNote(${response[i].id})">Delete</button>
+                        <button class="btn btn-sm btn-danger mt-3" onclick="deleteNotes(${response[i].id})">Delete</button>
                     </div>
                 </div>
             `;

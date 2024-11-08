@@ -1,6 +1,7 @@
 const { Notes } = require('../models/notes.js');
 const { readJSON } = require('./NotesUtils.js')
 const fs = require('fs').promises;
+
 //delete notes - aniq
 async function deleteNotes(req, res) {
     try {
