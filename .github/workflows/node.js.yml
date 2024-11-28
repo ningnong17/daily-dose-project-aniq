@@ -1,27 +1,33 @@
-name: Automatic Testing for notes Management Web App
+name: Automatic Testing for Notes Management Web App
 
 on:
   push:
     branches:
-      - main # Workflow will be triggered whenever there is a push in main branch
+      - main # Trigger workflow on push to main branch
+
 jobs:
-  test:
+  backend-tests:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code from GitHub Repo
       uses: actions/checkout@v3
-    
+
     - name: Setup Node.js in Ubuntu
       uses: actions/setup-node@v3
       with:
         node-version: 18
-        
-    - name: Remove existing node_modules folder from cloned project
-      run: rm -rf /home/runner/work/resource-mgmt/resource-mgmt/node_modules/*
-    
-    - name: Install dependencies for based on package.json
+
+    - name: Setup Node.js dependencies cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install dependencies based on package.json
       run: npm install
-    
-    - name: Run tests in "tests" folder
+
+    - name: Run backend tests
       run: npm run backend-test
