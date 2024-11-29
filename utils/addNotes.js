@@ -7,12 +7,12 @@ async function addNotes(req, res) {
         const title = req.body.title;
         const description = req.body.description;
         const priority = req.body.priority;
-        if (description.length < 1) {
-            return res.status(500).json({ message: 'Please enter more than 1 characters' });
+        if (!description || description.length < 1) {
+            return res.status(500).json({ message: 'Please enter more than 1 character' });
 
-        } else if (title.length < 1) {
+        } else if (!title || title.length < 1) {
             return res.status(500).json({ message: 'Please enter a title' });
-        } else if (priority < 1 || priority == null) {
+        } else if (!priority || priority < 1) {
             return res.status(500).json({ message: 'Please select a priority status' });
         } else {
             const newNotes = new Notes(title, description, priority);
