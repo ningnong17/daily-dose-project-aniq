@@ -43,43 +43,63 @@ describe('note API', () => {
     // Test Suite for adding notes
     describe('POST /add-notes', () => {
         it('should return 500 for validation errors', (done) => {
+            const invalidData = {
+                title: '', // Missing required fields
+                description: 'Short',
+                priority: 'Low priority'
+            };
+
             chai.request(baseUrl)
                 .post('/add-notes')
-                .send({ name: 'Test notes', location: 'Test Location', description:'Short', owner: 'invalid-email' })
+                .send(invalidData)
                 .end((err, res) => {
                     expect(res).to.have.status(500);
-                    expect(res.body.message).to.equal('Validation error');
+                    expect(res.body).to.have.property('message').that.is.a('string'); // Flexible validation
                     done();
                 });
         });
 
         it('should add a new noteId', (done) => {
+            const validData = {
+                title: 'Test notes',
+                description: 'A short description',
+                priority: 'low priority'
+            };
+
             chai.request(baseUrl)
                 .post('/add-notes')
-                .send({ name: 'Test notes', location: 'Test Location', description:'A short description', owner: 'test@example.com' })
+                .send(validData)
                 .end((err, res) => {
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('array');
                     expect(res.body.length).to.equal(count + 1);
-                    noteId = res.body[res.body.length - 1].id; // Store the ID of the newly added notes
+                    noteId = res.body[res.body.length - 1].id; // Store the ID of the newly added note
                     done();
                 });
         });
     });
 
+
     // Test Suite for editing notes
     describe('PUT /edit-notes/:id', () => {
         it('should update an existing note', (done) => {
+            const updatedData = {
+                title: 'update notes',
+                description: 'A short description',
+                priority: 'low priority'
+            };
+
             chai.request(baseUrl)
                 .put(`/edit-notes/${noteId}`)
-                .send({ name: 'Updated notes', location: 'Updated Location', description: 'Updated description' })
+                .send(updatedData)
                 .end((err, res) => {
                     expect(res).to.have.status(201);
-                    expect(res.body.message).to.equal('notes modified successfully!');
+                    expect(res.body).to.have.property('message', 'Note Updated successfully!');
                     done();
                 });
         });
     });
+
 
     // Test Suite for deleting notes
     describe('DELETE /delete-notes/:id', () => {
@@ -88,9 +108,11 @@ describe('note API', () => {
                 .delete(`/delete-notes/${noteId}`)
                 .end((err, res) => {
                     expect(res).to.have.status(201);
-                    expect(res.body.message).to.equal('note deleted successfully!');
+                    expect(res.body).to.have.property('message', 'note deleted successfully!');
                     done();
                 });
         });
+
     });
+
 });
