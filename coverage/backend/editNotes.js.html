@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68% </span>
+                <span class="strong">92% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/25</span>
+                <span class='fraction'>23/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/24</span>
+                <span class='fraction'>22/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,21 +121,21 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,20 +163,20 @@ async function editNotes(req, res) {
 &nbsp;
         for (var i = 0; i &lt; allNotes.length; i++) {
             var currentResource  = allNotes[i];
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (currentResource .id == id) {
+            if (currentResource .id == id) {
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                allNotes[i].title = title;</span>
-<span class="cstat-no" title="statement not covered" >                allNotes[i].description = description;</span>
-<span class="cstat-no" title="statement not covered" >                allNotes[i].priority = priority;</span>
-<span class="cstat-no" title="statement not covered" >                modified = true;</span>
-<span class="cstat-no" title="statement not covered" >                break;</span>
+                allNotes[i].title = title;
+                allNotes[i].description = description;
+                allNotes[i].priority = priority;
+                modified = true;
+                break;
             }
         }
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (modified) {
-<span class="cstat-no" title="statement not covered" >            await fs.writeFile('utils/notes.json', JSON.stringify(allNotes), 'utf8');</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(201).json({ message: 'Note Updated successfully!' });</span>
-        } else {
-            return res.status(500).json({ message: 'Error occurred, unable to modify!' });
+        if (modified) {
+            await fs.writeFile('utils/notes.json', JSON.stringify(allNotes), 'utf8');
+            return res.status(201).json({ message: 'Note Updated successfully!' });
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >            return res.status(500).json({ message: 'Error occurred, unable to modify!' });</span>
 &nbsp;
         }
     } catch (error) {
@@ -193,7 +193,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-28T19:28:00.722Z
+                at 2024-11-29T07:56:38.249Z
             </div>
         <script src="prettify.js"></script>
         <script>
