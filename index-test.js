@@ -10,10 +10,10 @@ var startPage = "index.html";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("./instumented"));
+app.use(express.static("./instrumented"));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/instumented/" + startPage);
+    res.sendFile(__dirname + "/instrumented/" + startPage);
 })
 app.post('/add-notes', addNotes);
 app.get('/view-notes', viewNotes);

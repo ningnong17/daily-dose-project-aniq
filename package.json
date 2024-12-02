@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cypress/code-coverage": "^3.13.7",
+    "@cypress/code-coverage": "^3.13.8",
     "body-parser": "^1.20.3",
     "chai": "^4.3.4",
     "chai-http": "^4.3.0",
@@ -21,5 +21,8 @@
     "fs": "^0.0.1-security",
     "mocha": "^10.8.2",
     "nyc": "^17.1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-istanbul": "^7.0.0"
   }
 }

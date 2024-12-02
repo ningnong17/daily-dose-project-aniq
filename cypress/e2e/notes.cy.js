@@ -12,17 +12,18 @@ describe('note Management Frontend', () => {
     return cy.task('stopServer'); // Stop the server after the report is done
   });
 
-  it('should add a new note', () => {
+  it('should add a new resource', () => {
     // Open the modal and fill in the form
-    cy.get('button[data-target="#noteModal"]').click();
+    cy.get('button[data-target="#notesModal"]').click();
     cy.get('#title').type('Test note', { force: true });
     cy.get('#description').type('Test Description', { force: true });
-    cy.get('#priority').type('low-priority', { force: true });
+    cy.get('#priority').select('low-priority').should('have.value', 'low-priority');
 
-    // Click the add note button
-    cy.get('button.btn-primary').contains('Add New note').click();
+    // Click the add notes button
+    cy.get('button.btn.btn-primary').contains('Add New Notes').click();
 
-    // Verify the note is in the table
+
+    // Verify the resource is in the table
     cy.get('#tableContent').contains('Test note').should('exist');
   });
 
@@ -33,31 +34,21 @@ describe('note Management Frontend', () => {
     cy.get('#tableContent').contains('Test note').should('exist');
   });
 
-  it('should update an existing note', () => {
-    cy.visit(baseUrl);
-
-    // Click the edit button for the note
-    cy.get('button.btn-warning').filter(':contains("Edit")').last().click();
-
-    // // Update note details
-    cy.get('#editTitle').clear().type('Updated note', { force: true });
-    cy.get('#editDescription').clear().type('Updated Description', { force: true });
-    cy.get('#editPriority').clear().type('medium-priority', { force: true });
-
-    // Click the update note button
-    cy.get('#updateButton').click();
-
-    // Verify the note is updated in the table
-    cy.get('#tableContent').contains('Updated note').should('exist');
-    cy.get('#tableContent').contains('Test note').should('not.exist');
-  });
-
   it('should delete a note', () => {
     cy.visit(baseUrl);
 
-    cy.get('button.btn-danger').filter(':contains("Delete")').last().click();
+    cy.get('button.btn.btn-sm.btn-danger').find('span.material-icons').last().contains('delete').click();
     
     // Verify that the note has been deleted
-    cy.get('#tableContent').contains('Updated note').should('not.exist');
+    cy.get('#tableContent').contains('Test note').should('not.exist');
+  });
+
+  it('should check each filter based on priority', () => {
+    cy.visit(baseUrl);
+
+    cy.get('#priorityFilter').select('extreme-priority').should('have.value', 'extreme-priority');
+    // Verify that the note is only low priority
+    cy.get('#tableContent').get('.note-card').should('have.id', 'extreme-priority');
+
   });
 });

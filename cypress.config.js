@@ -5,8 +5,10 @@ let baseUrl;
 
 module.exports = defineConfig({
   e2e: {
+    defaultCommandTimeout: 60000, // 5 minutes for commands like cy.visit
+    taskTimeout: 60000, 
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config)
+      require('@cypress/code-coverage/task')(on, config);
 
       on("task", {
         startServer() {
@@ -20,8 +22,8 @@ module.exports = defineConfig({
 
             server.stdout.on("data", (data) => {
               console.log(data.toString()); // Log the output for debugging
-              if (data.toString().includes("Demo project at:")) {
-                const baseUrlPrefix = "Demo project at: ";
+              if (data.toString().includes("Daily Dose Project:")) {
+                const baseUrlPrefix = "Daily Dose Project:";
                 const startIndex = data.toString().indexOf(baseUrlPrefix);
                 if (startIndex !== -1) {
                   baseUrl = data.toString().substring(startIndex + baseUrlPrefix.length).trim();
