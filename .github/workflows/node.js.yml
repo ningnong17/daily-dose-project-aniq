@@ -35,5 +35,5 @@ jobs:
     - name: Run the frontend test cases
       run: rm -rf .nyc_output & npx nyc --nycrc-path .nycrc-frontend cypress run
 
-    - name: Run backend tests
-      run: npm run backend-test
+    - name: Run tests
+      run: npm run test
