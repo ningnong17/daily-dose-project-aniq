@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.11% </span>
+                <span class="strong">76.92% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/17</span>
+                <span class='fraction'>20/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.11% </span>
+                <span class="strong">76.92% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/17</span>
+                <span class='fraction'>20/26</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,72 +92,84 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Notes } = require('../models/notes.js');
-const { writeJSON } = require('./NotesUtils.js')
-&nbsp;
-//Add notes
-async function addNotes(req, res) {
-    try {
-        const title = req.body.title;
-        const description = req.body.description;
-        const priority = req.body.priority;
-        if (!description || description.length &lt; 1) {
-            return res.status(500).json({ message: 'Please enter more than 1 character' });
-&nbsp;
-        } else if (!title || title.length &lt; 1) {
-            return res.status(500).json({ message: 'Please enter a title' });
-        } else if (!priority || priority &lt; 1) {
-            return res.status(500).json({ message: 'Please select a priority status' });
-        } else {
-            const newNotes = new Notes(title, description, priority);
-            const updatedNotes = await writeJSON(newNotes, 'utils/notes.json');
-            return res.status(201).json(updatedNotes);
-        }
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >        return res.status(500).json({ message: error.message });</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function addNotes() {
+    var response = "";
+    var jsonData = new Object();
+    jsonData.title = document.getElementById("title").value;
+    jsonData.description = document.getElementById("description").value;
+    jsonData.priority = document.getElementById("priority").value;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (jsonData.title == "" || jsonData.description == "" || jsonData.priority == "") {
+<span class="cstat-no" title="statement not covered" >        document.getElementById("message").innerHTML = 'All fields are required!';</span>
+<span class="cstat-no" title="statement not covered" >        document.getElementById("message").setAttribute("class", "text-danger");</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
     }
+    var request = new XMLHttpRequest();
+    request.open("POST", "/add-notes", true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.onload = function () {
+        response = JSON.parse(request.responseText);
+        console.log(response)
+        if (response.message == undefined) {
+            document.getElementById("message").innerHTML = 'Added Notes: ' + jsonData.name + '!';
+            document.getElementById("message").setAttribute("class", "text-success");
+            document.getElementById("title").value = "";
+            document.getElementById("description").value = "";
+            document.getElementById("priority").value = "";
+            window.location.href = 'index.html';
+        }
+        else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >            document.getElementById("message").innerHTML = 'Unable to add notes!';</span>
+<span class="cstat-no" title="statement not covered" >            document.getElementById("message").setAttribute("class", "textdanger");</span>
+<span class="cstat-no" title="statement not covered" >            document.getElementById("message").setAttribute("class", "text-danger");</span>
+        }
+    };
+    request.send(JSON.stringify(jsonData));
 }
-&nbsp;
-&nbsp;
-module.exports = {
-    addNotes
-}</pre></td></tr></table></pre>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-01T12:17:48.881Z
+                at 2024-12-02T13:23:40.959Z
             </div>
         <script src="prettify.js"></script>
         <script>
