@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for deleteNotes.js</title>
+    <title>Code coverage report for viewNotes.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> deleteNotes.js</h1>
+        <h1><a href="index.html">All files</a> viewNotes.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.73% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>18/19</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/18</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -95,78 +95,90 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">55x</span>
+<span class="cline-any cline-yes">43x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Notes } = require('../models/notes.js');
-const { readJSON } = require('./NotesUtils.js')
-const fs = require('fs').promises;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">function viewNotes(priorityLevel = "all") {
+    var request = new XMLHttpRequest();
+    request.open('GET', '/view-notes', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.onload = function () {
+        var response = JSON.parse(request.responseText);
+        var html = '';
 &nbsp;
-//delete notes - aniq
-async function deleteNotes(req, res) {
-    try {
-        const id = req.params.id;
-        
-        const allNotes = await readJSON('utils/notes.json');
-        var index = -1;
-        
-        for (var i = 0; i &lt; allNotes.length; i++) {
-            var curcurrNotes = allNotes[i];
-            if (curcurrNotes.id == id)
-                index = i;
+        for (var i = 0; i &lt; response.length; i++) {
+            if (priorityLevel === "all" || response[i].priority === priorityLevel) {
+                html += `
+                        &lt;div class="note-card"&gt;
+                            &lt;h3 class="note-title"&gt;${response[i].title}&lt;/h3&gt;
+                            &lt;span class="note-description"&gt;${response[i].description}&lt;/span&gt;
+                            &lt;span class="note-priority ${response[i].priority}", id="${response[i].priority}"&gt;
+                                ${response[i].priority.replace("-", " ").toUpperCase()}
+                            &lt;/span&gt;
+                            &lt;div class="note-buttons"&gt;
+&nbsp;
+                            &lt;button type="button" class="btn btn-sm btn-warning" onclick="editNote('${encodeURIComponent(JSON.stringify(response[i]))}')"&gt;&lt;span class="material-icons"&gt;edit&lt;/span&gt;&lt;/button&gt;
+                            &lt;button class="btn btn-sm btn-danger" onclick="deleteNotes(${response[i].id})"&gt;&lt;span class="material-icons"&gt;delete&lt;/span&gt;&lt;/button&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                `;
+            }
         }
 &nbsp;
-        if (index != -1) {
-            allNotes.splice(index, 1);
-            await fs.writeFile('utils/notes.json', JSON.stringify(allNotes), 'utf8');
-            return res.status(201).json({ message: 'note deleted successfully!' });
-        } else {
-            return res.status(500).json({ message: 'Error occurred, unable to delete!' });
-        }
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >        return res.status(500).json({ message: error.message });</span>
-    }
-}
+        document.getElementById('tableContent').innerHTML = html;
+    };
+    request.send();
+};
 &nbsp;
-module.exports = {
-    deleteNotes
-}</pre></td></tr></table></pre>
+// Function to get selected priority and filter notes
+function filterNotes() {
+    var selectedPriority = document.getElementById("priorityFilter").value;
+    viewNotes(selectedPriority);
+};</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-01T19:18:57.544Z
+                at 2024-12-02T13:23:40.959Z
             </div>
         <script src="prettify.js"></script>
         <script>

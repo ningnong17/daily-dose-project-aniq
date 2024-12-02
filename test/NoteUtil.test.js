@@ -42,33 +42,43 @@ describe('note API', () => {
 
     // Test Suite for adding notes
     describe('POST /add-notes', () => {
-        it('should return 500 for validation errors', (done) => {
-            const invalidData = {
-                title: '', // Missing required fields
-                description: 'Short',
-                priority: 'Low priority'
-            };
-
+        it('ask to select priority status', (done) => {
             chai.request(baseUrl)
                 .post('/add-notes')
-                .send(invalidData)
+                .send({ title: 'Test note', description: 'test', priority: '' })
                 .end((err, res) => {
                     expect(res).to.have.status(500);
-                    expect(res.body).to.have.property('message').that.is.a('string'); // Flexible validation
+                    expect(res.body.message).to.equal('Please select a priority status');
                     done();
                 });
         });
 
-        it('should add a new noteId', (done) => {
-            const validData = {
-                title: 'Test notes',
-                description: 'A short description',
-                priority: 'low priority'
-            };
-
+        it('should ask to add tittle', (done) => {
             chai.request(baseUrl)
                 .post('/add-notes')
-                .send(validData)
+                .send({ title: '', description: 'test', priority: 'low-priority' })
+                .end((err, res) => {
+                    expect(res).to.have.status(500);
+                    expect(res.body.message).to.equal('Please enter a title');
+                    done();
+                });
+        });
+
+        it('should should ask add description', (done) => {
+            chai.request(baseUrl)
+                .post('/add-notes')
+                .send({ title: 'Test note', description: '', priority: 'low-priority' })
+                .end((err, res) => {
+                    expect(res).to.have.status(500);
+                    expect(res.body.message).to.equal('Please enter more than 1 character');
+                    done();
+                });
+        });
+
+        it('should add a new note', (done) => {
+            chai.request(baseUrl)
+                .post('/add-notes')
+                .send({ title: 'Test note', description: 'test', priority: 'low-priority' })
                 .end((err, res) => {
                     expect(res).to.have.status(201);
                     expect(res.body).to.be.an('array');
@@ -98,6 +108,16 @@ describe('note API', () => {
                     done();
                 });
         });
+
+        it('it should send an error that cannot be modified', (done) => {
+            chai.request(baseUrl)
+                .put(`/edit-notes/3`)
+                .end((err, res) => {
+                    expect(res).to.have.status(500);
+                    expect(res.body.message).to.equal('Error occurred, unable to modify!');
+                    done();
+                });
+        });
     });
 
 
@@ -113,6 +133,15 @@ describe('note API', () => {
                 });
         });
 
+        it('should return an 500 error', (done) => {
+            chai.request(baseUrl)
+                .delete(`/delete-notes/${noteId}`)
+                .end((err, res) => {
+                    expect(res).to.have.status(500);
+                    expect(res.body).to.have.property('message', 'Error occurred, unable to delete!');
+                    done();
+                });
+        });
     });
 
 });
