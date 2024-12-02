@@ -6,34 +6,27 @@ on:
       - main # Trigger workflow on push to main branch
 
 jobs:
-  backend-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code from GitHub Repo
       uses: actions/checkout@v3
-
+      
     - name: Setup Node.js in Ubuntu
       uses: actions/setup-node@v3
       with:
         node-version: 18
-
-    - name: Setup Node.js dependencies cache
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: Install dependencies based on package.json
+        
+    - name: Remove existing node_modules folder from cloned project
+      run: rm -rf /home/runner/work/daily-dose-project/daily-dose-project/node_modules/*
+      
+    - name: Install dependencies for based on package.json
       run: npm install
 
+    - name: Run tests in "tests" folder
+      run: npm run backend-test
     - name: Instrument the frontend code
       run: cp -R public instrumented & npx nyc instrument public instrumented
-      
     - name: Run the frontend test cases
       run: rm -rf .nyc_output & npx nyc --nycrc-path .nycrc-frontend cypress run
-
-    - name: Run tests
-      run: npm run test
