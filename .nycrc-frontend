@@ -4,7 +4,8 @@
         "html"
     ],
     "include": [
-        "public/js/**/*.js"
+        "public/js/viewNotes.js",
+        "public/js/deleteNotes.js"
     ],
     "reportDir": "coverage/frontend",
     "check-coverage": true,
