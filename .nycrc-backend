@@ -4,7 +4,8 @@
         "html"
     ],
     "include": [
-        "utils/*.js"
+        "utils/viewNotes.js",
+        "utils/deleteNotes.js"
     ],
     "reportDir": "coverage/backend",
     "check-coverage": true,

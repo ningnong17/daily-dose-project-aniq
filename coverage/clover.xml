@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1733239702986" clover="3.2.0">
-  <project timestamp="1733239702986" name="All files">
+<coverage generated="1736335752082" clover="3.2.0">
+  <project timestamp="1736335752082" name="All files">
     <metrics statements="74" coveredstatements="43" conditionals="18" coveredconditionals="11" methods="12" coveredmethods="7" elements="104" coveredelements="61" complexity="0" loc="74" ncloc="74" packages="1" files="4" classes="4"/>
     <file name="addNotes.js" path="C:\Users\notan\OneDrive\Desktop\DVOPS_Projects\project\daily-dose-project-aniq\public\js\addNotes.js">
       <metrics statements="26" coveredstatements="20" conditionals="7" coveredconditionals="5" methods="2" coveredmethods="2"/>
@@ -78,12 +78,12 @@
       <line num="3" count="13" type="stmt"/>
       <line num="4" count="13" type="stmt"/>
       <line num="5" count="13" type="stmt"/>
-      <line num="6" count="12" type="stmt"/>
-      <line num="7" count="12" type="stmt"/>
-      <line num="9" count="12" type="stmt"/>
-      <line num="10" count="51" type="cond" truecount="4" falsecount="0"/>
-      <line num="11" count="39" type="stmt"/>
-      <line num="28" count="12" type="stmt"/>
+      <line num="6" count="13" type="stmt"/>
+      <line num="7" count="13" type="stmt"/>
+      <line num="9" count="13" type="stmt"/>
+      <line num="10" count="55" type="cond" truecount="4" falsecount="0"/>
+      <line num="11" count="43" type="stmt"/>
+      <line num="28" count="13" type="stmt"/>
       <line num="30" count="13" type="stmt"/>
       <line num="35" count="4" type="stmt"/>
       <line num="36" count="4" type="stmt"/>
