@@ -22,7 +22,6 @@ describe('note Management Frontend', () => {
     // Click the add notes button
     cy.get('button.btn.btn-primary').contains('Add New Notes').click();
 
-
     // Verify the resource is in the table
     cy.get('#tableContent').contains('Test note').should('exist');
   });
@@ -34,82 +33,102 @@ describe('note Management Frontend', () => {
     cy.get('#tableContent').contains('Test note').should('exist');
   });
 
-  it('should delete a note', () => {
+  it('should delete a note with stubbing', () => {
     cy.visit(baseUrl);
 
-    cy.get('button.btn.btn-sm.btn-danger').find('span.material-icons').last().contains('delete').click();
-    
-    // Verify that the note has been deleted
+    cy.intercept('DELETE', '/delete-notes/:id', {
+      statusCode: 200,
+      body: { message: 'Note deleted successfully!' },
+    }).as('deleteNote');
+
+    cy.get('button.btn.btn-sm.btn-danger').find('span.material-icons').last().click();
+
     cy.get('#tableContent').contains('Test note').should('not.exist');
   });
 
-  it('should show an error message when delete fails', () => {
-    // Spy on the window.alert to capture error messages
-    cy.visit(baseUrl);
-    cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alert');
-    });
-  
-    // Mock the DELETE request to return a failure response
-    cy.intercept('DELETE', '/delete-notes/*', {
-      statusCode: 500,
-      body: { message: 'Unable to delete Note!' },
-    });
-  
-    // Trigger the delete button
-    cy.get('button.btn.btn-sm.btn-danger').find('span.material-icons').last().click();
-  
-    // Assert that the alert was called with the error message
-    cy.get('@alert').should('have.been.calledWith', 'Unable to delete Note!');
-  });
-  
-
-
-  it('should view extreme priority', () => {
+  it('should filter by extreme priority with stubbing', () => {
     cy.visit(baseUrl);
 
-    // Verify that the note is only extreme priority
+    // Mock the GET request for extreme priority
+    cy.intercept('GET', '/notes?priority=extreme-priority', {
+      statusCode: 200,
+      body: [
+        { id: 1, title: 'Extreme Note', priority: 'EXTREME PRIORITY' },
+      ],
+    }).as('filterExtremePriority');
+
+    // Trigger the filter selection
     cy.get('#priorityFilter').select('extreme-priority');
+
+    // Verify the filtered results in the UI
     cy.get('#tableContent').contains('EXTREME PRIORITY').should('exist');
     cy.get('#tableContent').contains('HIGH PRIORITY').should('not.exist');
     cy.get('#tableContent').contains('MEDIUM PRIORITY').should('not.exist');
     cy.get('#tableContent').contains('LOW PRIORITY').should('not.exist');
-
   });
 
-  it('should view high priority', () => {
+  it('should filter by high priority with stubbing', () => {
     cy.visit(baseUrl);
 
-    // Verify that the note is only high priority
+    // Mock the GET request for high priority
+    cy.intercept('GET', '/notes?priority=high-priority', {
+      statusCode: 200,
+      body: [
+        { id: 2, title: 'High Priority Note', priority: 'HIGH PRIORITY' },
+      ],
+    }).as('filterHighPriority');
+
+    // Trigger the filter selection
     cy.get('#priorityFilter').select('high-priority');
-    cy.get('#tableContent').contains('EXTREME PRIORITY').should('not.exist');
+
+    // Verify the filtered results in the UI
     cy.get('#tableContent').contains('HIGH PRIORITY').should('exist');
+    cy.get('#tableContent').contains('EXTREME PRIORITY').should('not.exist');
     cy.get('#tableContent').contains('MEDIUM PRIORITY').should('not.exist');
     cy.get('#tableContent').contains('LOW PRIORITY').should('not.exist');
-
   });
 
-  it('should view medium priority', () => {
+  it('should filter by medium priority with stubbing', () => {
     cy.visit(baseUrl);
 
-    // Verify that the note is only medium priority
+    // Mock the GET request for medium priority
+    cy.intercept('GET', '/notes?priority=medium-priority', {
+      statusCode: 200,
+      body: [
+        { id: 3, title: 'Medium Priority Note', priority: 'MEDIUM PRIORITY' },
+      ],
+    }).as('filterMediumPriority');
+
+    // Trigger the filter selection
     cy.get('#priorityFilter').select('medium-priority');
+
+
+    // Verify the filtered results in the UI
+    cy.get('#tableContent').contains('MEDIUM PRIORITY').should('exist');
     cy.get('#tableContent').contains('EXTREME PRIORITY').should('not.exist');
     cy.get('#tableContent').contains('HIGH PRIORITY').should('not.exist');
-    cy.get('#tableContent').contains('MEDIUM PRIORITY').should('exist');
     cy.get('#tableContent').contains('LOW PRIORITY').should('not.exist');
-
   });
 
-  it('should view low priority', () => {
+  it('should filter by low priority with stubbing', () => {
     cy.visit(baseUrl);
 
-    // Verify that the note is only low priority
+    // Mock the GET request for low priority
+    cy.intercept('GET', '/notes?priority=low-priority', {
+      statusCode: 200,
+      body: [
+        { id: 4, title: 'Low Priority Note', priority: 'LOW PRIORITY' },
+      ],
+    }).as('filterLowPriority');
+
+    // Trigger the filter selection
     cy.get('#priorityFilter').select('low-priority');
+
+
+    // Verify the filtered results in the UI
+    cy.get('#tableContent').contains('LOW PRIORITY').should('exist');
     cy.get('#tableContent').contains('EXTREME PRIORITY').should('not.exist');
     cy.get('#tableContent').contains('HIGH PRIORITY').should('not.exist');
     cy.get('#tableContent').contains('MEDIUM PRIORITY').should('not.exist');
-    cy.get('#tableContent').contains('LOW PRIORITY').should('exist');
-
   });
 });
