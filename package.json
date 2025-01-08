@@ -7,7 +7,6 @@
     "backend-test": "nyc --nycrc-path .nycrc-backend mocha",
     "frontend-instrument": "xcopy public instrumented /I /E /Y & nyc instrument public instrumented",
     "frontend-test": "rmdir /s /q .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run"
-
   },
   "keywords": [],
   "author": "",
@@ -19,11 +18,11 @@
     "chai-http": "^4.3.0",
     "express": "^4.21.1",
     "fs": "^0.0.1-security",
-    "mocha": "^10.8.2",
     "nyc": "^17.1.0"
   },
   "devDependencies": {
     "babel-plugin-istanbul": "^7.0.0",
-    "cypress": "^13.16.0"
+    "cypress": "^13.16.0",
+    "mocha": "^11.0.1"
   }
 }
