@@ -4,7 +4,7 @@
   "description": "daily-dose-project",
   "main": "index.js",
   "scripts": {
-    "backend-test": "nyc --nycrc-path .nycrc-backend mocha",
+    "backend-test": "nyc --nycrc-path .nycrc-backend ./node_modules/.bin/mocha",
     "frontend-instrument": "xcopy public instrumented /I /E /Y & nyc instrument public instrumented",
     "frontend-test": "rmdir /s /q .nyc_output & nyc --nycrc-path .nycrc-frontend cypress run"
 
