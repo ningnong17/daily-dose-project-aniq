@@ -8,7 +8,5 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Ignore NYC output
-.nyc_output/
 # Ignore coverage folder
 coverage/
