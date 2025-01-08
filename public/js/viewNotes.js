@@ -12,7 +12,7 @@ function viewNotes(priorityLevel = "all") {
                         <div class="note-card">
                             <h3 class="note-title">${response[i].title}</h3>
                             <span class="note-description">${response[i].description}</span>
-                            <span class="note-priority ${response[i].priority}">
+                            <span class="note-priority ${response[i].priority}", id="${response[i].priority}">
                                 ${response[i].priority.replace("-", " ").toUpperCase()}
                             </span>
                             <div class="note-buttons">
