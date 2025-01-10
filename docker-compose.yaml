@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ningnong17/dd-docker-img:latest
-    container_name: dd-docker-container
+    image: aniqamir/daily-dose-docker-img:latest
+    container_name: daily-dose-docker-container
     ports:
       - "8000:5050"
